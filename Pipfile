@@ -9,3 +9,6 @@ verify_ssl = true
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+run = "python __main__.py"

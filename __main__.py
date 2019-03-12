@@ -10,7 +10,7 @@ key = ""
 def get_canvas():
     API_URL = os.environ["CANVAS_URL"]
     # Canvas API key
-    API_KEY = os.environ["CANVAS_OAUTH"]
+    API_KEY = key
 
     # Initialize a new Canvas object
     canvas = Canvas(API_URL, API_KEY)
@@ -20,6 +20,7 @@ def get_canvas():
 @click.option('--profile', help="Profile you want to go with", default="main")
 @click.group()
 def cli(profile):
+    global key
     if profile == "teacher":
         key = os.environ["CANVAS_TEACHER_OAUTH"]
     else:
@@ -44,7 +45,17 @@ def files(course):
     files = canvas.get_course(course).get_files()
 
     for canv_file in files:
-        print(canv_file)
+        dir(canv_file)
+        click.echo("{} ({})".format(canv_file, canv_file.id))
+
+
+@click.option('--fileid', help="The id of the file you want to download")
+@cli.command()
+def dl(fileid):
+    canvas = get_canvas()
+
+    canv_file = canvas.get_file(fileid)
+    canv_file.download(canv_file.filename)
 
 
 if __name__ == "__main__":
