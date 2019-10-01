@@ -1,0 +1,8 @@
+canvas.py
+setup.py
+canvas.egg-info/PKG-INFO
+canvas.egg-info/SOURCES.txt
+canvas.egg-info/dependency_links.txt
+canvas.egg-info/entry_points.txt
+canvas.egg-info/requires.txt
+canvas.egg-info/top_level.txt
